@@ -385,22 +385,30 @@ export default function App() {
                 title="Introduction to Prompt Engineering with GitHub Copiliot"
                 issuer="Microsoft"
                 year="2026"
-              />
+                link="https://drive.google.com/file/d/1UXUE2hAIqsztv-DOXzwC3Y1NVEH1DBmv/view?usp=sharing"
+/>
+              
               <CertificateCard 
                 title="Generative AI"
                 issuer="Linkedin"
                 year="2026"
-              />
+                link="https://drive.google.com/file/d/1tXII87W9OzU7zPU5NxGb4zyF0ocVhyP9/view?usp=sharing"
+/>
+              
               <CertificateCard 
                 title="Artificial Intelligence Primer Certification"
                 issuer="Infosys"
                 year="2026"
-              />
+                link="https://drive.google.com/file/d/1rNO4rJXh45y_xizuN4c0MvelrVylVRbs/view?usp=sharing"
+/>
+              
               <CertificateCard 
                 title="Introduction to Cloud Computing"
                 issuer="NPTEL"
                 year="2025"
-              />
+                link="https://drive.google.com/file/d/1Ji1iBcUVonrORdhZxGoL_uOsWqtZc-qz/view?usp=sharing"
+/>
+              
             </div>
           </Section>
         )}
@@ -458,11 +466,13 @@ export default function App() {
                     <MessageSquare size={22} className="text-teal-400" />
                     Send a Message
                   </h3>
-                  <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); alert("Thanks for your message! This is a demo form."); }}>
+                  <form className="space-y-5" action="https://formspree.io/f/meengnlg" 
+                       method="POST">
                     <div>
                       <label className="block text-sm font-medium text-slate-400 mb-1">Your Name</label>
                       <input 
                         type="text" 
+                        name="name"
                         required
                         className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all placeholder:text-slate-600"
                         placeholder="John Doe"
@@ -472,6 +482,7 @@ export default function App() {
                       <label className="block text-sm font-medium text-slate-400 mb-1">Your Email</label>
                       <input 
                         type="email" 
+                        name="email"
                         required
                         className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all placeholder:text-slate-600"
                         placeholder="john@example.com"
@@ -480,6 +491,7 @@ export default function App() {
                     <div>
                       <label className="block text-sm font-medium text-slate-400 mb-1">Message</label>
                       <textarea 
+                        name="message"
                         required
                         rows={4}
                         className="w-full bg-slate-900/50 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all placeholder:text-slate-600 resize-none"
@@ -622,7 +634,7 @@ const getImageFromDB = async (key: string): Promise<string | null> => {
   }
 };
 
-const CertificateCard = ({ title, issuer, year }: { title: string, issuer: string, year: string }) => {
+const CertificateCard = ({ title, issuer, year,link }: { title: string, issuer: string, year: string }) => {
   const [image, setImage] = useState<string | null>(null);
   
   const dbKey = `cert_img_${title.replace(/\s+/g, '_')}_${issuer.replace(/\s+/g, '_')}`;
@@ -655,11 +667,12 @@ const CertificateCard = ({ title, issuer, year }: { title: string, issuer: strin
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      className="flex flex-col h-full gap-4 p-6 bg-slate-800/30 border border-slate-700 rounded-2xl hover:bg-slate-800/50 transition-colors group relative overflow-hidden"
+    <a href={link} target="_blank" rel="noopener noreferrer">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="flex flex-col h-full gap-4 p-6 bg-slate-800/30 border border-slate-700 rounded-2xl hover:bg-slate-800/50 transition-colors group relative overflow-hidden"
     >
       <div className="flex items-start gap-4 flex-grow z-10">
         <div className="p-3 bg-teal-500/10 text-teal-400 rounded-xl shrink-0">
@@ -693,6 +706,7 @@ const CertificateCard = ({ title, issuer, year }: { title: string, issuer: strin
         </div>
       )}
     </motion.div>
+    </a>
   );
 };
 
