@@ -1,5 +1,6 @@
 #!/bin/bash
 
-cp -r * /var/www/html/
+systemctl enable nginx
+systemctl start nginx
 
-systemctl restart nginx
+exit 0
