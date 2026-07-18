@@ -5,10 +5,12 @@ phases:
     runtime-versions:
       nodejs: 20
     commands:
-      - npm install
+      - echo "Installing dependencies..."
+      - npm ci || npm install
 
   build:
     commands:
+      - echo "Building application..."
       - npm run build
 
 artifacts:
